@@ -1,3 +1,5 @@
+# data.txt must be in the same directory
+
 from numpy import *
 from matplotlib.pyplot import *
 
