@@ -2,6 +2,7 @@
 
 from numpy import *
 from matplotlib.pyplot import *
+from os import path
 
 def co_efficients(X,Y):
     n = len(X)
@@ -12,7 +13,13 @@ def co_efficients(X,Y):
 def predict(a,b,x):
     return a*x+b*exp(x)
 
-x,y = loadtxt("data.txt",delimiter=' ',unpack = 'true')
+# Get the current directory of the script
+current_directory = path.dirname(path.abspath(__file__))
+
+# File input using the correct path
+file_path = path.join(current_directory, "data.txt")
+
+x,y = loadtxt(file_path, delimiter=' ', unpack=True)
 
 ye_x = y * exp(-x)
 xe_x = x * exp(-x)
