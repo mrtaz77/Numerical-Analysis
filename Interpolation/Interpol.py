@@ -1,5 +1,8 @@
+# give point of approximation as input
+
 import numpy as np
 import matplotlib.pyplot as plt
+from os import path
 
 def nClosest(arr, target, n):
     result = []
@@ -48,9 +51,12 @@ def product(i, value, x):
 
 
 
-#File input
+# Get the current directory of the script
+current_directory = path.dirname(path.abspath(__file__))
 
-time,gen_exp = np.loadtxt("gene.txt",delimiter='\t',unpack = 'true')
+# File input using the correct path
+file_path = path.join(current_directory, "gene.txt")
+time, gen_exp = np.loadtxt(file_path, delimiter='\t', unpack=True)
 
 order = 3
 n = len(time)
