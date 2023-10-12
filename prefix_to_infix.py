@@ -1,5 +1,5 @@
 def tokenize(prefix) :
-    operator = "()+-*/"
+    operator = "[]{}()+-*/"
     tokens = []
     currentNum = ""
     
@@ -15,7 +15,7 @@ def tokenize(prefix) :
                     tokens.append(int(currentNum))
                 currentNum = ""
             tokens.append(_)
-        elif _ == " " : 
+        elif _ == " " or _ == ",": 
             if currentNum :
                 if "." in currentNum :
                     tokens.append(float(currentNum))
@@ -39,7 +39,7 @@ def evaluate(prefix_array) :
     stack = []
     
     for i in range(len(prefix_array)) :
-        operand = "()+-*/"
+        operand = "(){}[]+-*/"
         
         _ = prefix_array[len(prefix_array)-i-1]
         
@@ -48,8 +48,8 @@ def evaluate(prefix_array) :
         if str(_) not in operand :
             stack.append(_)
             
-        elif str(_) in operand :
-            if _ == ')':
+        else :
+            if _ in ')}]' :
                 stack.append(_)
                 continue
             
@@ -81,8 +81,12 @@ def evaluate(prefix_array) :
             elif _ == '/':
                 value = a / b
                 stack.append(value)
-            elif _ == '(' :
-                if str(a) not in operand and b == ")" :
+            elif _ == '(' or _ == '{' or _ == '[':
+                if _ == '(' and  str(a) not in operand and b == ")"  :
+                    stack.append(a)
+                elif _ == '{' and  str(a) not in operand and b == "}"  :
+                    stack.append(a)
+                elif _ == '[' and  str(a) not in operand and b == "]"  :
                     stack.append(a)
                 else :
                     raise Exception("Invalid prefix")
@@ -91,7 +95,7 @@ def evaluate(prefix_array) :
     return value      
 
 # console input
-prefix = str(input("Enter prefix notation : "))
+prefix = "[ *   [ /  4  2]  [ +   8  7]]"
 
 
 # print(prefix)
