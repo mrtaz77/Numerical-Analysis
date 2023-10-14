@@ -26,7 +26,7 @@ b = parameters[1]
 # Add points in this line for prediction
 predict = array([1.6,2.0,2.5,1],dtype=float64)
 
-print("Model , y = {:.4f}".format(parameters[0])+"xe^({:.4f}".format(parameters[1])+")")
+print("Model , y = {:.4f}".format(parameters[0])+"xe^({:.4f}".format(parameters[1])+"x)")
 
 output = estimate(parameters[0],parameters[1],predict)
 
