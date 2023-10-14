@@ -41,6 +41,8 @@ ypoints = estimate(co_efficients[0],co_efficients[1],xpoints)
 plot(xpoints,ypoints, '.-r', markersize = 8, label='Drug level', markerfacecolor='w')
 
 scatter(t,w)
+scatter(h,estimate(co_efficients[0],co_efficients[1],h),c ="white",linewidths = 2,edgecolor ="green",s = 50)
+
 legend(loc='best')
 
 xlim([0,31])
